@@ -1,0 +1,16 @@
+.caixa{
+    margin: 10px;
+    background-color: #FFFFFE;
+    box-shadow: 0px 1px 42px rgba(151, 116, 208, 0.25);
+    border-radius: 10px;
+    padding: 10px 20px 20px 20px;
+    width: 600px;
+}
+
+input, select{
+    border: 3px solid #090E21 !important;
+}
+
+label{
+    margin-left: 10px !important;
+}
