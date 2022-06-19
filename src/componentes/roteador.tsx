@@ -3,6 +3,7 @@ import BarraNavegacao from "./barraNavegacao";
 import FormularioCadastroCliente from "./formularioCadastroCliente";
 import ListaCliente from "./listaCliente";
 import ListaProdServ from "./listaProdServ"
+import FormularioCadastroProdServ from "./formularioCadastroProdServ"
 
 type state = {
     tela: string
@@ -26,7 +27,7 @@ export default class Roteador extends Component<{}, state> {
     }
 
     render() {
-        let barraNavegacao = <BarraNavegacao seletorView={this.selecionarView} tema="#9575cd deep-purple lighten-2" botoes={['Clientes', 'Cadastros', 'Produtos/Serviços']} />
+        let barraNavegacao = <BarraNavegacao seletorView={this.selecionarView} tema="#9575cd deep-purple lighten-2" botoes={['Clientes', 'Produtos & Serviços', 'Cadastro de Clientes', 'Cadastro de Produtos/Serviços']} />
         if (this.state.tela === 'Clientes') {
             return (
                 <>
@@ -41,14 +42,23 @@ export default class Roteador extends Component<{}, state> {
                     <FormularioCadastroCliente tema="purple lighten-4" />
                 </>
             )
-        } */else {
+        } else {
             return (
                 <>
                     {barraNavegacao}
                     <ListaProdServ tema="purple lighten-4" />
                 </>
             )
+        }*/ else {
+            return (
+                <>
+                    {barraNavegacao}
+                    <FormularioCadastroProdServ tema="purple lighten-4" />
+                </>
+            )
         } 
+        
+        
 
     }
 }

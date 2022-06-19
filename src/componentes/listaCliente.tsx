@@ -11,7 +11,6 @@ type props = {
 
 export default class ListaCliente extends Component<props> {
     render() {
-        let estilo = ``
 
         return (
             <>
