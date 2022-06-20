@@ -1,64 +1,31 @@
 import { Component } from "react";
+import React from "react";
+import { Route, BrowserRouter, Routes as Switch } from "react-router-dom";
 import BarraNavegacao from "./barraNavegacao";
 import FormularioCadastroCliente from "./formularioCadastroCliente";
 import ListaCliente from "./listaCliente";
 import ListaProdServ from "./listaProdServ"
 import FormularioCadastroProdServ from "./formularioCadastroProdServ"
 
+
 type state = {
     tela: string
 }
 
-export default class Roteador extends Component<{}, state> {
-    constructor(props: {} | Readonly<{}>) {
-        super(props)
-        this.state = {
-            tela: 'Clientes'
-        }
-        this.selecionarView = this.selecionarView.bind(this)
-    }
-
-    selecionarView(novaTela: string, evento: Event) {
-        evento.preventDefault()
-        console.log(novaTela);
-        this.setState({
-            tela: novaTela
-        })
-    }
-
-    render() {
-        let barraNavegacao = <BarraNavegacao seletorView={this.selecionarView} tema="#9575cd deep-purple lighten-2" botoes={['Clientes', 'Produtos & Serviços', 'Cadastro de Clientes', 'Cadastro de Produtos/Serviços']} />
-        if (this.state.tela === 'Clientes') {
-            return (
-                <>
-                    {barraNavegacao}
-                    <ListaCliente tema="purple lighten-4" />
-                </>
-            )
-        } /*else {
-            return (
-                <>
-                    {barraNavegacao}
-                    <FormularioCadastroCliente tema="purple lighten-4" />
-                </>
-            )
-        } else {
-            return (
-                <>
-                    {barraNavegacao}
-                    <ListaProdServ tema="purple lighten-4" />
-                </>
-            )
-        }*/ else {
-            return (
-                <>
-                    {barraNavegacao}
-                    <FormularioCadastroProdServ tema="purple lighten-4" />
-                </>
-            )
-        } 
-        
-        
-
-    }
+function Routes() {
+    return (
+        <>
+        <BarraNavegacao tema="#9575cd deep-purple lighten-2" botoes={[{nome:'Clientes', rota: "/"},{ nome: 'Produtos & Serviços', rota: "/prodserv"}, {nome: 'Cadastro de Clientes', rota:"/cadastrocliente"},{ nome: 'Cadastro de Produtos/Serviços', rota: "/cadastroprodserv"}]} seletorView={()=>{}} />
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/" element={<ListaCliente tema="purple lighten-4" />} />
+                    <Route path="/prodserv" element={<ListaProdServ tema="purple lighten-4" />} />
+                    <Route path="/cadastroprodserv" element={<FormularioCadastroProdServ tema="purple lighten-4" />} />
+                    <Route path="/cadastrocliente" element={<FormularioCadastroCliente tema="purple lighten-4" />} />
+                </Switch>
+            </BrowserRouter>
+        </>
+    )
 }
+
+export default Routes;
